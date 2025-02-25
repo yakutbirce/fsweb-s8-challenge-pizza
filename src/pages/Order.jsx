@@ -1,63 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/Order.css";
 import { useNavigate } from "react-router-dom";
 
 const Order = () => {
-
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate("/success");
-  
-  }
-
-
-  const [selectedSize, setSelectedSize] = useState("");
-  const [selectedDough, setSelectedDough] = useState("Hamur Kalınlığı");
-  const [selectedExtras, setSelectedExtras] = useState([]);
-  const [orderNote, setOrderNote] = useState("");
+  const [selectedSize, setSelectedSize] = useState(""); 
+  const [selectedDough, setSelectedDough] = useState("Hamur Kalınlığı"); 
+  const [selectedExtras, setSelectedExtras] = useState([]); 
+  const [orderNote, setOrderNote] = useState(""); 
   const [quantity, setQuantity] = useState(1);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const basePrice = 85.5;
   const extraPrice = 5;
   const totalPrice = basePrice + selectedExtras.length * extraPrice;
 
   const extras = [
-    "Pepperoni",
-    "Sosis",
-    "Kanada Jambonu",
-    "Domates",
-    "Soğan",
-    "Tavuk Izgara",
-    "Mısır",
-    "Sucuk",
-    "Jalapeno",
-    "Biber",
-    "Ananas",
-    "Sarımsak",
-    "Kabak",
+    "Pepperoni", "Sosis", "Kanada Jambonu", "Domates", "Soğan",
+    "Tavuk Izgara", "Mısır", "Sucuk", "Jalapeno", "Biber",
+    "Ananas", "Sarımsak", "Kabak"
   ];
 
   const handleExtraChange = (event) => {
     const { value, checked } = event.target;
     setSelectedExtras((prevExtras) => {
-      const newExtras = checked
-        ? prevExtras.length < 10
-          ? [...prevExtras, value]
-          : prevExtras
-        : prevExtras.filter((item) => item !== value);
-
-      return newExtras;
+      if (checked) return prevExtras.length < 10 ? [...prevExtras, value] : prevExtras;
+      return prevExtras.filter((item) => item !== value);
     });
   };
 
   const handleQuantityChange = (amount) => {
-    setQuantity((prev) => {
-      const newQuantity = Math.max(1, prev + amount);
-      return newQuantity;
-    });
+    setQuantity((prev) => Math.max(1, prev + amount));
   };
 
   const handleSizeChange = (event) => {
@@ -72,23 +46,26 @@ const Order = () => {
     setOrderNote(event.target.value);
   };
 
-  const validateForm = () => {
-    if (
-      selectedSize &&
+
+  const isFormValid = () => {
+    return (
+      selectedSize !== "" &&
       selectedDough !== "Hamur Kalınlığı" &&
-      selectedExtras.length >= 1 &&
-      selectedExtras.length <= 10 &&
-      orderNote.length >= 3
-    ) {
-      setIsFormValid(true);
-    } else {
-      setIsFormValid(false);
-    }
+      selectedExtras.length >= 4 &&
+      selectedExtras.length <= 10
+    );
   };
 
-  useEffect(() => {
-    validateForm();
-  }, [selectedSize, selectedDough, selectedExtras, orderNote]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!isFormValid()) {
+      setErrorMessage("Lütfen tüm alanları eksiksiz doldurun.");
+      return;
+    }
+
+    navigate("/success");
+  };
 
   return (
     <div className="order-wrapper">
@@ -102,11 +79,7 @@ const Order = () => {
 
         <p className="pizza-description">
           Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı
-          pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli
-          diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun
-          ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,
-          düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli
-          lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir..
+          pizza tam sana göre.
         </p>
 
         <div className="pizza-options">
@@ -119,8 +92,7 @@ const Order = () => {
                   name="size"
                   value={size}
                   onChange={handleSizeChange}
-                />{" "}
-                {size}
+                /> {size}
               </label>
             ))}
           </div>
@@ -146,8 +118,7 @@ const Order = () => {
                   value={extra}
                   checked={selectedExtras.includes(extra)}
                   onChange={handleExtraChange}
-                />{" "}
-                {extra}
+                /> {extra}
               </label>
             ))}
           </div>
@@ -155,36 +126,39 @@ const Order = () => {
 
         <div className="order-note">
           <h4>Sipariş Notu</h4>
-          <input
-            type="text"
+          <textarea
             placeholder="Siparişine eklemek istediğin bir not var mı?"
             value={orderNote}
             onChange={handleOrderNoteChange}
           />
         </div>
 
-        {/*Sipariş Kontrol Paneli */}
-<div className="order-summary">
-  {/*Adet Seçim Kutusu */}
-  <div className="quantity-control">
-    <button onClick={() => handleQuantityChange(-1)}>-</button>
-    <span>{quantity}</span>
-    <button onClick={() => handleQuantityChange(1)}>+</button>
-  </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-  {/*Sipariş Toplamı */}
-  <div className="order-total">
-    <h4 className="summary-title">Sipariş Toplamı</h4>
-    <p className="summary-item">Seçimler <span>{selectedExtras.length * extraPrice}₺</span></p>
-    <p className="summary-total">Toplam <span>{(totalPrice * quantity).toFixed(2)}₺</span></p>
-    <button 
-    className="order-button"
-    onClick={handleSubmit}>
-      SİPARİŞ VER
-      </button>
-  </div>
-</div>
+        <div className="order-summary">
+          <div className="quantity-control">
+            <button onClick={() => handleQuantityChange(-1)}>-</button>
+            <span>{quantity}</span>
+            <button onClick={() => handleQuantityChange(1)}>+</button>
+          </div>
 
+          <div className="order-total">
+            <h4 className="summary-title">Sipariş Toplamı</h4>
+            <p className="summary-item">
+              Seçimler <span>{selectedExtras.length * extraPrice}₺</span>
+            </p>
+            <p className="summary-total">
+              Toplam <span>{(totalPrice * quantity).toFixed(2)}₺</span>
+            </p>
+            <button 
+              className="order-button" 
+              onClick={handleSubmit} 
+              disabled={!isFormValid()} 
+            >
+              SİPARİŞ VER
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

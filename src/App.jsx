@@ -1,16 +1,18 @@
 import React from 'react';
 import Order from './pages/Order';
-import Header from './components/Header';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Success from './pages/Success';
 import HomePage from './pages/HomePage';
+import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      {/* Header'ı sadece HomePage harici sayfalarda göster */}
       <Routes>
+        {/* Anasayfa */}
         <Route path='/' element={<HomePage />} />
+
+        {/* Sipariş Sayfası */}
         <Route 
           path='/order' 
           element={
@@ -20,15 +22,9 @@ function App() {
             </>
           } 
         />
-        <Route 
-          path='/success' 
-          element={
-            <>
-              <Header />
-              <Success />
-            </>
-          } 
-        />
+
+        {/* Success Sayfası */}
+        <Route path='/success' element={<Success />} />
       </Routes>
     </Router>
   );

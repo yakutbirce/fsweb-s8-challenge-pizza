@@ -1,4 +1,4 @@
-/* 📌 Sayfanın tamamını kaplayan arka plan */
+/* Sayfanın tamamını kaplayan arka plan */
 .home-container {
     width: 100vw;
     height: 100vh;
@@ -7,42 +7,42 @@
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    flex-direction: column; /* Elemanları dikey hizala */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* 📌 Teknolojik Yemekler Başlığı */
+/* Başlık */
 .home-title {
     font-family: 'Quattrocento', serif;
     font-size: 28px;
     font-weight: bold;
     color: white;
     position: absolute;
-    top: 70px;  /* Yukarıya sabitliyoruz */
+    top: 50px; 
     left: 50%;
-    transform: translateX(-50%); /* Ortaya hizalama */
+    transform: translateX(-50%); 
 }
 
-/* 📌 İçerik alanı */
+/* content */
 .home-banner {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px; /* Başlık ile içerik arasına boşluk bırak */
+    margin-top: 50px;
 }
 
-/* 📌 Başlık (KOD ACIKTIRIR PIZZA, DOYURUR) */
+/* Başlık (KOD ACIKTIRIR PIZZA, DOYURUR) */
 .home-subtitle {
     font-family: 'Roboto Condensed';
     font-weight: 300;
-    font-size: 86px;
+    font-size: 82px;
     line-height: 92px;
     letter-spacing: 1.5px;
     text-align: center;
     color: #FFFFFF;
-    margin-bottom: 400px;
+    margin-bottom: 268px;
 }
 
 /* Buton */
@@ -52,7 +52,7 @@
     width: 180px;
     height: 50px;
     border-radius: 50px;
-    position: absolute;  /* Butonu tam istediğimiz yere konumlandırıyoruz */
+    position: absolute;  
     left: 50%;
     transform: translateX(-50%);
     background-color: #FDC913;
@@ -61,8 +61,7 @@
     border: none;
     font-size: 18px;
     cursor: pointer;
-    margin-bottom: 140px;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 

@@ -1,11 +1,11 @@
-/* 🌟 Tüm Sayfa Temel Düzeni */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  /* 🌟 HTML ve BODY Genel Ayarlar */
+
   html, body {
     width: 100%;
     height: 100%;
@@ -13,16 +13,16 @@
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Sayfanın ortalanmasını sağlar */
+    align-items: center; 
   }
   
-  /* 🌟 Linklerin Default Stili */
+ 
   a {
     text-decoration: none;
     color: inherit;
   }
   
-  /* 🌟 Başlıkların Default Stili */
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
   }

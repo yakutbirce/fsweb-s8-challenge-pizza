@@ -86,9 +86,9 @@
 }
 
 .size-selection h4::after {
-    content: " *"; /* Yıldız ekliyoruz */
-    color:#D80027; /* Kırmızı renk */
-    font-weight: bold; /* Kalın font */
+    content: " *";
+    color:#D80027; 
+    font-weight: bold;
 }
 
 .dough-selection h4::after {
@@ -184,17 +184,14 @@
     margin-bottom: 20px;
     
 }
-
-.order-note input {
-    width: 100%;
+.order-note textarea {
+    width: 531px;
+    height: 56px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
-    height: 56px;
-    top: 827.63px;
     border-radius: 6px;
-    border-width: 1px;
-
+    resize: vertical; 
 }
 
 
@@ -250,22 +247,28 @@
 
 /*Sipariş Toplam Alanı */
 .order-total {
-    font-family: 'Roboto Condensed';
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     background: #fff;
     border-radius: 5px;
     padding: 20px;
     width: 100%;
-    max-width: 400px;
     height: auto;
     border: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
+    padding-bottom: 80px;
+}
+
+.order-total .order-button {
+    margin-top: 234px;
+    width: 300px;
+    margin-left: 115px;
+    border-radius: 6px;
 }
 
 
-/* Sipariş Toplam ve Adet Kutusu Aynı Hizaya Getirildi */
 .order-summary .order-total {
     align-self: center;
 }
@@ -278,7 +281,6 @@
 }
 
 
-/*Sipariş Toplam Alanı */
 .order-total p {
     font-size: 16px;
     margin-bottom: 5px;
@@ -316,23 +318,26 @@
 
 /*Sipariş Ver Butonu */
 .order-button {
-    background-color: #FDC913;
-    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 15px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
     width: 100%;
-    margin-top: 30px;
+    max-width: 344px;
+    height: 66px;
+    background: #FDC913;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 
 
-/* 🍕 Responsive Düzenlemeler */
+/* Responsive- */
 @media (max-width: 768px) {
-    /* Sayfanın genişliğini sınırlıyoruz */
     .order-wrapper {
         padding-top: 150px;
         display: flex;
@@ -343,22 +348,22 @@
 
     .order-container {
         width: 90%;
-        max-width: 420px; /* Mobilde 420px genişlik */
+        max-width: 420px; 
     }
 
-    /* Pizza Başlığı */
+
     .pizza-title {
         font-size: 20px;
         text-align: center;
     }
 
-    /* Pizza Açıklaması */
+
     .pizza-description {
         font-size: 14px;
         text-align: justify;
     }
 
-    /* 🍕 Boyut ve Hamur Seçenekleri - Yan Yana Kalacak */
+    
     .pizza-options {
         flex-direction: row;
         justify-content: space-between;
@@ -370,7 +375,7 @@
         width: 48%;
     }
 
-    /* 🍕 Ek Malzemeler - Mobilde 2'li sıralama */
+    /*Ek Malzemeler - Mobilde 2'li sıralama */
     .ingredients-list {
         display: flex;
         flex-wrap: wrap;
@@ -381,12 +386,12 @@
         flex-basis: calc(50% - 10px); /* 2'li sıralama */
     }
 
-    /* 🍕 Sipariş Notu */
+
     .order-note::after {
         width: 100%;
     }
 
-    /* 🎯 Sipariş Toplamı Kutusu */
+
     .order-summary {
         flex-direction: column;
         align-items: center;
@@ -403,7 +408,7 @@
     }
 
     .quantity-control {
-        width: 100%; /* Mobilde genişlik tam olacak */
+        width: 100%; 
         max-width: 150px; 
         display: flex;
         justify-content: left;

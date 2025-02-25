@@ -3,7 +3,7 @@
   position: fixed;  
   left: 0;
   width: 100%;
-  height: 207px;  
+  height: 180px;  
   background: #CE2829;
   border-bottom: 1px solid #C20608;
   box-shadow: 0px 9px 150px -30px rgba(0, 0, 0, 0.09);
@@ -32,9 +32,8 @@
 .header nav p {
   position: absolute;
   top: 157px; 
-  left: 500px;
+  left: 400px;
   color: #FAF7F2;
-  margin-left: 127px;
 }
   
 
@@ -58,20 +57,20 @@
   /*Responsive*/
   
   @media (max-width: 768px) {
-    /* Header - Sabit Yükseklik */
+    
     .header {
         height: 207px;
         padding: 0;
     }
 
-    /* Başlık - Ortalanmış */
+
     .header h1 {
         font-size: 28px;
         width: 100%;
         text-align: center;
     }
 
-    /* Menü (Anasayfa - Sipariş Oluştur) Ortalanıyor */
+  
     .header nav p {
         font-size: 16px;
         left: 21%;

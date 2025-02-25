@@ -1,25 +1,66 @@
-/* 📌 Genel Stil */
+
 .success-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Sayfanın tamamını kaplasın */
-    background-color: #CE2829; /* Arka plan rengi */
-    color: white; /* Yazı rengi */
+    height: 100vh;
+    width: 100vw;
+    background-color: #CE2829;
+    color: white;
     text-align: center;
-    font-family: 'Barlow', sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* 📌 Tebrikler! Siparişiniz Alındı! */
-.success-container h2 {
-    font-size: 42px;
+/*Teknolojik Yemekler Başlık */
+.success-title {
+    font-size: 24px;
     font-weight: bold;
-    margin: 0;
+    font-family: 'Quattrocento', serif;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
 }
 
-.success-container h3 {
-    font-size: 36px;
-    font-weight: normal;
-    margin-top: 10px;
+/* Mesaj Alanı */
+.success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Tebrikler! Siparişiniz Alındı! */
+.success-message h2 {
+    font-size: 86px;
+    font-weight: lighter;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.success-message h3 {
+    font-size: 68px;
+    font-weight: lighter;
+    margin-top: 15px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+    .success-title {
+        font-size: 20px;
+        top: 20px;
+    }
+
+    .success-message h2 {
+        font-size: 42px;
+    }
+
+    .success-message h3 {
+        font-size: 32px;
+    }
 }
