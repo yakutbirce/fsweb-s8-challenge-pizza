@@ -158,6 +158,42 @@
     margin-right: 10px;
 }
 
+/*Kullanıcı Adı Inputu */
+.order-name {
+    margin-top: 20px;
+}
+
+.order-name::after {
+    content: "";
+    display: block;
+    width: 523px; 
+    height: 1px; 
+    background-color: rgba(95, 95, 95, 0.5); 
+    margin-top: 30px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.order-name h4 {
+    font-family: Barlow;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24.76px;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+}
+
+.order-name input {
+    width: 531px;
+    height: 56px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+}
+
+
 /*Sipariş Notu */
 .order-note {
     margin-top: 20px;

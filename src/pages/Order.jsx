@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Order.css";
 import { useNavigate } from "react-router-dom";
 import PopupMessage from "../components/PopupMessage";
+import axios from "axios";
 
 const Order = () => {
   const navigate = useNavigate();
@@ -12,6 +13,9 @@ const Order = () => {
   const [orderNote, setOrderNote] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [popupMessage, setPopupMessage] = useState("");
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const basePrice = 85.5;
   const extraPrice = 5;
@@ -32,6 +36,18 @@ const Order = () => {
     "Sarımsak",
     "Kabak",
   ];
+
+  const handleNameChange = (event) => {
+    const newName = event.target.value;
+    setName(newName);
+
+    if (newName.length < 3) {
+      setNameError("İsim en az 3 karakterden oluşmalıdır!");
+    } else {
+      setNameError("");
+    }
+  };
+  
 
   const handleExtraChange = (event) => {
     const { value, checked } = event.target;
@@ -60,6 +76,7 @@ const Order = () => {
 
   const isFormValid = () => {
     return (
+      name.length >= 3 &&
       selectedSize !== "" &&
       selectedDough !== "Hamur Kalınlığı" &&
       selectedExtras.length >= 4 &&
@@ -79,6 +96,37 @@ const Order = () => {
       }, 3000);
       return;
     }
+
+    setIsSubmitting(true);
+    console.log("api request gönderiliyor");
+
+    const orderData = {
+      name,
+      size: selectedSize,
+      dough: selectedDough,
+      extras: selectedExtras,
+      note: orderNote,
+      quantity,
+      total: (totalPrice * quantity).toFixed(2),
+    };
+
+    axios
+    .post("https://reqres.in/api/pizza", orderData)
+    .then((response) => {
+      console.log("response.data");
+
+      setTimeout(() => {
+        navigate("/success"); // Success sayfasına yönlendir
+      }, 1000);
+      
+    })
+    .catch((error) => {
+      console.error("api hatası", error);
+      setPopupMessage("Bir hata oluştu. Lütfen tekrar deneyin.");
+    })
+    .finally(() => {
+      setIsSubmitting(false);
+    });
 
     console.log("form doğrulama başarılı");
     navigate("/success");
@@ -148,6 +196,17 @@ const Order = () => {
           </div>
         </div>
 
+        <div className="order-name">
+          <h4>İsminizi Girin</h4>
+          <input
+            type="text"
+            placeholder="İsminizi yazın..."
+            value={name}
+            onChange={handleNameChange}
+          />
+          {nameError && <p className="error-message">{nameError}</p>}
+        </div>
+
         <div className="order-note">
           <h4>Sipariş Notu</h4>
           <textarea
@@ -181,9 +240,10 @@ const Order = () => {
             <button
               className="order-button"
               onClick={handleSubmit}
+             
            
             >
-              SİPARİŞ VER
+              {isSubmitting ? "Gönderiliyor..." : "SİPARİŞ VER"}
             </button>
             <br />
            
