@@ -113,7 +113,8 @@ const Order = () => {
     axios
     .post("https://reqres.in/api/pizza", orderData)
     .then((response) => {
-      console.log("response.data");
+      console.log("API Response:", response.data);
+
 
       setTimeout(() => {
         navigate("/success"); 
@@ -186,6 +187,7 @@ const Order = () => {
               <label key={index}>
                 <input
                   type="checkbox"
+                  data-cy="ingredient-checkbox"
                   value={extra}
                   checked={selectedExtras.includes(extra)}
                   onChange={handleExtraChange}
@@ -200,6 +202,8 @@ const Order = () => {
           <h4>İsminizi Girin</h4>
           <input
             type="text"
+            name="name"
+            data-cy="name-input"
             placeholder="İsminizi yazın..."
             value={name}
             onChange={handleNameChange}
@@ -239,6 +243,7 @@ const Order = () => {
           
             <button
               className="order-button"
+              data-cy="order-button"
               onClick={handleSubmit}
              
            
