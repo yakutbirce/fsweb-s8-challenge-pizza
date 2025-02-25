@@ -116,7 +116,7 @@ const Order = () => {
       console.log("response.data");
 
       setTimeout(() => {
-        navigate("/success"); // Success sayfasına yönlendir
+        navigate("/success"); 
       }, 1000);
       
     })
