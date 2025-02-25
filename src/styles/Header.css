@@ -1,23 +1,21 @@
 /* Header */
 .header {
-    box-sizing: border-box;
-    position: absolute;
-    height: 207px;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    background: #CE2829;
-    border-bottom: 1px solid #C20608;
-    box-shadow: 0px 9px 150px -30px rgba(0, 0, 0, 0.09);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-  }
+  position: fixed;  
+  left: 0;
+  width: 100%;
+  height: 207px;  
+  background: #CE2829;
+  border-bottom: 1px solid #C20608;
+  box-shadow: 0px 9px 150px -30px rgba(0, 0, 0, 0.09);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+}
   
   /* Teknolojik Yemekler Başlık */
   .header h1 {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Quattrocento', serif;
     font-weight: 700;
     font-size: 36px;
     color: #FFFFFF;
@@ -29,30 +27,57 @@
   }
   
 /* Menü */
+
+
 .header nav p {
-    font-family: 'Barlow', sans-serif;
-    font-size: 16px;
-    color: #FAF7F2;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 500px; 
-    top: 157px;
-  }
+  position: absolute;
+  top: 157px; 
+  left: 500px;
+  color: #FAF7F2;
+  margin-left: 127px;
+}
   
+
   
   /* Anasayfa Linki */
   .header nav p a {
     color: #FAF7F2;
     text-decoration: none;
     font-weight: 400;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
   }
   
   /* Sipariş Oluştur Linki */
   .header nav p strong {
     font-weight: 700;
     color: #FFFFFF;
+    cursor: pointer;
   }
   
+  /*Responsive*/
+  
+  @media (max-width: 768px) {
+    /* Header - Sabit Yükseklik */
+    .header {
+        height: 207px;
+        padding: 0;
+    }
+
+    /* Başlık - Ortalanmış */
+    .header h1 {
+        font-size: 28px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Menü (Anasayfa - Sipariş Oluştur) Ortalanıyor */
+    .header nav p {
+        font-size: 16px;
+        left: 21%;
+        transform: translateX(-50%);
+        position: absolute;
+        top: 157px;
+    }
+}
+

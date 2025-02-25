@@ -8,7 +8,10 @@ const Header = () => {
         <h1>Teknolojik Yemekler</h1>
         <nav>
             <p>
-                <Link to='/'>Anasayfa</Link> - <strong>Sipariş Oluştur</strong>
+            <Link to="/">Anasayfa</Link>
+             
+             <span>-</span>
+            <Link to="/order"><strong>Sipariş Oluştur</strong></Link>
             </p>
         </nav>
     </header>

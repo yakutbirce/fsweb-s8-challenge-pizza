@@ -1,0 +1,25 @@
+/* 📌 Genel Stil */
+.success-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Sayfanın tamamını kaplasın */
+    background-color: #CE2829; /* Arka plan rengi */
+    color: white; /* Yazı rengi */
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+}
+
+/* 📌 Tebrikler! Siparişiniz Alındı! */
+.success-container h2 {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.success-container h3 {
+    font-size: 36px;
+    font-weight: normal;
+    margin-top: 10px;
+}
