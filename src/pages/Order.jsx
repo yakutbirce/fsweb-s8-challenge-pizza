@@ -1,31 +1,43 @@
 import React, { useState } from "react";
 import "../styles/Order.css";
 import { useNavigate } from "react-router-dom";
+import PopupMessage from "../components/PopupMessage";
 
 const Order = () => {
   const navigate = useNavigate();
 
-  const [selectedSize, setSelectedSize] = useState(""); 
-  const [selectedDough, setSelectedDough] = useState("Hamur Kalınlığı"); 
-  const [selectedExtras, setSelectedExtras] = useState([]); 
-  const [orderNote, setOrderNote] = useState(""); 
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedDough, setSelectedDough] = useState("Hamur Kalınlığı");
+  const [selectedExtras, setSelectedExtras] = useState([]);
+  const [orderNote, setOrderNote] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
 
   const basePrice = 85.5;
   const extraPrice = 5;
   const totalPrice = basePrice + selectedExtras.length * extraPrice;
 
   const extras = [
-    "Pepperoni", "Sosis", "Kanada Jambonu", "Domates", "Soğan",
-    "Tavuk Izgara", "Mısır", "Sucuk", "Jalapeno", "Biber",
-    "Ananas", "Sarımsak", "Kabak"
+    "Pepperoni",
+    "Sosis",
+    "Kanada Jambonu",
+    "Domates",
+    "Soğan",
+    "Tavuk Izgara",
+    "Mısır",
+    "Sucuk",
+    "Jalapeno",
+    "Biber",
+    "Ananas",
+    "Sarımsak",
+    "Kabak",
   ];
 
   const handleExtraChange = (event) => {
     const { value, checked } = event.target;
     setSelectedExtras((prevExtras) => {
-      if (checked) return prevExtras.length < 10 ? [...prevExtras, value] : prevExtras;
+      if (checked)
+        return prevExtras.length < 10 ? [...prevExtras, value] : prevExtras;
       return prevExtras.filter((item) => item !== value);
     });
   };
@@ -46,7 +58,6 @@ const Order = () => {
     setOrderNote(event.target.value);
   };
 
-
   const isFormValid = () => {
     return (
       selectedSize !== "" &&
@@ -59,16 +70,23 @@ const Order = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log("submit butonuna basıldı");
+
     if (!isFormValid()) {
-      setErrorMessage("Lütfen tüm alanları eksiksiz doldurun.");
+      setPopupMessage("Lütfen tüm alanları eksiksiz doldurun.");
+      setTimeout(() => {
+        setPopupMessage("")
+      }, 3000);
       return;
     }
 
+    console.log("form doğrulama başarılı");
     navigate("/success");
   };
 
   return (
     <div className="order-wrapper">
+      <PopupMessage message={popupMessage} onClose={() => setPopupMessage("")} />
       <div className="order-container">
         <h2 className="pizza-title">Position Absolute Acı Pizza</h2>
         <div className="pizza-info">
@@ -79,7 +97,11 @@ const Order = () => {
 
         <p className="pizza-description">
           Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı
-          pizza tam sana göre.
+          pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli
+          diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun
+          ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,
+          düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli
+          lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
         </p>
 
         <div className="pizza-options">
@@ -92,7 +114,8 @@ const Order = () => {
                   name="size"
                   value={size}
                   onChange={handleSizeChange}
-                /> {size}
+                />{" "}
+                {size}
               </label>
             ))}
           </div>
@@ -118,7 +141,8 @@ const Order = () => {
                   value={extra}
                   checked={selectedExtras.includes(extra)}
                   onChange={handleExtraChange}
-                /> {extra}
+                />{" "}
+                {extra}
               </label>
             ))}
           </div>
@@ -133,7 +157,7 @@ const Order = () => {
           />
         </div>
 
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        
 
         <div className="order-summary">
           <div className="quantity-control">
@@ -141,6 +165,7 @@ const Order = () => {
             <span>{quantity}</span>
             <button onClick={() => handleQuantityChange(1)}>+</button>
           </div>
+
 
           <div className="order-total">
             <h4 className="summary-title">Sipariş Toplamı</h4>
@@ -150,13 +175,18 @@ const Order = () => {
             <p className="summary-total">
               Toplam <span>{(totalPrice * quantity).toFixed(2)}₺</span>
             </p>
-            <button 
-              className="order-button" 
-              onClick={handleSubmit} 
-              disabled={!isFormValid()} 
+
+           
+          
+            <button
+              className="order-button"
+              onClick={handleSubmit}
+           
             >
               SİPARİŞ VER
             </button>
+            <br />
+           
           </div>
         </div>
       </div>
